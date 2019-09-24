@@ -36,11 +36,11 @@ Follow these steps to create an Azure Database for PostgreSQL server:
 
 3. Select the **Single server** deployment option.
 
-   ![Select Azure Database for PostgreSQL - Single server deployment option](./media/tutorial-design-database-using-azure-portal/select-deployment-option.png)
+   ![Select Azure Database for PostgreSQL - Single server deployment option](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/select-deployment-option.png)
 
 4. Fill out the **Basics** form with the following information:
 
-    ![Create a server](./media/tutorial-design-database-using-azure-portal/create-basics.png)
+    ![Create a server](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/create-basics.png)
 
     Setting|Suggested Value|Description
     ---|---|---
@@ -58,7 +58,7 @@ Follow these steps to create an Azure Database for PostgreSQL server:
    > Consider using the Basic pricing tier if light compute and I/O are adequate for your workload. Note that servers created in the Basic pricing tier cannot later be scaled to General Purpose or Memory Optimized. See the [pricing page](https://azure.microsoft.com/pricing/details/postgresql/) for more information.
    > 
 
-    ![The "Pricing tier" pane](./media/quickstart-create-database-portal/2-pricing-tier.png)
+    ![The "Pricing tier" pane](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/quickstart-create-database-portal/2-pricing-tier.png)
 
     > [!TIP]
     > With **auto-growth** enabled your server increases storage when you are approaching the allocated limit, without impacting your workload.
@@ -67,7 +67,7 @@ Follow these steps to create an Azure Database for PostgreSQL server:
 
 6. On the toolbar, select the **Notifications** icon (a bell) to monitor the deployment process. Once the deployment is done, you can select **Pin to dashboard**, which creates a tile for this server on your Azure portal dashboard as a shortcut to the server's **Overview** page. Selecting **Go to resource** opens the server's **Overview** page.
 
-    ![The "Notifications" pane](./media/quickstart-create-database-portal/3-notifications.png)
+    ![The "Notifications" pane](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/quickstart-create-database-portal/3-notifications.png)
    
    By default, a **postgres** database is created under your server. The [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) database is a default database that's meant for use by users, utilities, and third-party applications. (The other default database is **azure_maintenance**. Its function is to separate the managed service processes from user actions. You cannot access this database.)
 
@@ -78,13 +78,13 @@ The Azure Database for PostgreSQL service uses a firewall at the server-level. B
 
 1. After the deployment completes, click **All Resources** from the left-hand menu and type in the name **mydemoserver** to search for your newly created server. Click the server name listed in the search result. The **Overview** page for your server opens and provides options for further configuration.
 
-   ![Azure Database for PostgreSQL - Search for server](./media/tutorial-design-database-using-azure-portal/4-locate.png)
+   ![Azure Database for PostgreSQL - Search for server](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/4-locate.png)
 
 2. In the server page, select **Connection security**. 
 
 3. Click in the text box under **Rule Name,** and add a new firewall rule to specify the IP range for connectivity. Enter your IP range. Click **Save**.
 
-   ![Azure Database for PostgreSQL - Create Firewall Rule](./media/tutorial-design-database-using-azure-portal/5-firewall-2.png)
+   ![Azure Database for PostgreSQL - Create Firewall Rule](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/5-firewall-2.png)
 
 4. Click **Save** and then click the **X** to close the **Connections security** page.
 
@@ -98,13 +98,13 @@ When you created the Azure Database for PostgreSQL server, the default **postgre
 
 1. From the left-hand menu in the Azure portal, click **All resources** and search for the server you just created.
 
-   ![Azure Database for PostgreSQL - Search for server](./media/tutorial-design-database-using-azure-portal/4-locate.png)
+   ![Azure Database for PostgreSQL - Search for server](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/4-locate.png)
 
 2. Click the server name **mydemoserver**.
 
 3. Select the server's **Overview** page. Make a note of the **Server name** and **Server admin login name**.
 
-   ![Azure Database for PostgreSQL - Server Admin Login](./media/tutorial-design-database-using-azure-portal/6-server-name.png)
+   ![Azure Database for PostgreSQL - Server Admin Login](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/6-server-name.png)
 
 
 ## Connect to PostgreSQL database using psql
@@ -184,11 +184,11 @@ Imagine you have accidentally deleted this table. This situation is something yo
 
 1. On the Azure Database for PostgreSQL **Overview** page for your server, click **Restore** on the toolbar. The **Restore** page opens.
 
-   ![Azure portal - Restore form options](./media/tutorial-design-database-using-azure-portal/9-azure-portal-restore.png)
+   ![Azure portal - Restore form options](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/9-azure-portal-restore.png)
 
 2. Fill out the **Restore** form with the required information:
 
-   ![Azure portal - Restore form options](./media/tutorial-design-database-using-azure-portal/10-azure-portal-restore.png)
+   ![Azure portal - Restore form options](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/media/tutorial-design-database-using-azure-portal/10-azure-portal-restore.png)
 
    - **Restore point**: Select a point-in-time that occurs before the server was changed
    - **Target server**: Provide a new server name you want to restore to
