@@ -179,6 +179,94 @@ You can see the updated values when you retrieve the data.
 SELECT * FROM inventory;
 ```
 
+## Create data from web urls
+
+The data model we're going to work with is simple: user and event data from GitHub. Events include fork creation, git commits related to an organization, and more.
+
+Once you've connected via psql, let's create our tables. In the psql console run:
+
+```sql
+CREATE TABLE github_events
+(
+    event_id bigint,
+    event_type text,
+    event_public boolean,
+    repo_id bigint,
+    payload jsonb,
+    repo jsonb,
+    user_id bigint,
+    org jsonb,
+    created_at timestamp
+);
+
+CREATE TABLE github_users
+(
+    user_id bigint,
+    url text,
+    login text,
+    avatar_url text,
+    gravatar_id text,
+    display_login text
+);
+```
+
+The `payload` field of `github_events` has a JSONB datatype. JSONB is the JSON datatype in binary form in Postgres. The datatype makes it easy to store a flexible schema in a single column.
+
+Postgres can create a `GIN` index on this type, which will index every key and value within it. With an  index, it becomes fast and easy to query the payload with various conditions. Let's go ahead and create a couple of indexes before we load our data. In psql:
+
+```sql
+CREATE INDEX event_type_index ON github_events (event_type);
+CREATE INDEX payload_index ON github_events USING GIN (payload jsonb_path_ops);
+```
+
+We're ready to load data. In psql still, shell out to download the files:
+
+```sql
+\! curl -O https://examples.citusdata.com/users.csv
+\! curl -O https://examples.citusdata.com/events.csv
+```
+
+Next, load the data from the files into the tables:
+
+```sql
+SET CLIENT_ENCODING TO 'utf8';
+
+\copy github_events from 'events.csv' WITH CSV
+\copy github_users from 'users.csv' WITH CSV
+```
+
+## Run queries
+
+Now it's time for the fun part, actually running some queries. Let's start with a simple `count (*)` to see how much data we loaded:
+
+```sql
+SELECT count(*) from github_events;
+```
+
+That worked nicely. We'll come back to that sort of aggregation in a bit, but for now let’s look at a few other queries. Within the JSONB `payload` column there's a good bit of data, but it varies based on event type. `PushEvent` events contain a size that includes the number of distinct commits for the push. We can use it to find the total number of commits per hour:
+
+```sql
+SELECT date_trunc('hour', created_at) AS hour,
+       sum((payload->>'distinct_size')::int) AS num_commits
+FROM github_events
+WHERE event_type = 'PushEvent'
+GROUP BY hour
+ORDER BY hour;
+```
+
+Let's find the users who created the greatest number of repositories. This query involved joining events and the users table on the user_id column.
+
+```sql
+SELECT gu.login, count(*)
+  FROM github_events ge
+  JOIN github_users gu
+    ON ge.user_id = gu.user_id
+ WHERE ge.event_type = 'CreateEvent'
+   AND ge.payload @> '{"ref_type": "repository"}'
+ GROUP BY gu.login
+ ORDER BY count(*) DESC;
+```
+
 ## Restore data to a previous point in time
 Imagine you have accidentally deleted this table. This situation is something you cannot easily recover from. Azure Database for PostgreSQL allows you to go back to any point-in-time for which your server has backups (determined by the backup retention period you configured) and restore this point-in-time to a new server. You can use this new server to recover your deleted data. The following steps restore the **mydemoserver** server to a point before the inventory table was added.
 
