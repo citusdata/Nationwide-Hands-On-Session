@@ -27,7 +27,7 @@ If you don't have an Azure subscription, create a [free](https://azure.microsoft
 
 ## Create an Azure Database for PostgreSQL
 
-An Azure Database for PostgreSQL server is created with a defined set of [compute and storage resources](./concepts-compute-unit-and-storage.md). The server is created within an [Azure resource group](../azure-resource-manager/resource-group-overview.md).
+An Azure Database for PostgreSQL server is created with a defined set of [compute and storage resources](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/concepts-compute-unit-and-storage.md). The server is created within an [Azure resource group](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/azure-resource-manager/resource-group-overview.md).
 
 Follow these steps to create an Azure Database for PostgreSQL server:
 1. Click **Create a resource**  in the upper left-hand corner of the Azure portal.
@@ -282,7 +282,7 @@ Imagine you have accidentally deleted this table. This situation is something yo
    - **Target server**: Provide a new server name you want to restore to
    - **Location**: You cannot select the region, by default it is same as the source server
    - **Pricing tier**: You cannot change this value when restoring a server. It is same as the source server. 
-3. Click **OK** to [restore the server to a point-in-time](./howto-restore-server-portal.md) before the table was deleted. Restoring a server to a different point in time creates a duplicate new server as the original server as of the point in time you specify, provided that it is within the retention period for your [pricing tier](./concepts-pricing-tiers.md).
+3. Click **OK** to [restore the server to a point-in-time](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/howto-restore-server-portal.md) before the table was deleted. Restoring a server to a different point in time creates a duplicate new server as the original server as of the point in time you specify, provided that it is within the retention period for your [pricing tier](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/concepts-pricing-tiers.md).
 
 ## Next steps
 In this tutorial, you learned how to use the Azure portal and other utilities to:
@@ -296,4 +296,4 @@ In this tutorial, you learned how to use the Azure portal and other utilities to
 > * Restore data
 
 Next, to learn how to use the Azure CLI to do similar tasks, review this tutorial: 
-[Design your first Azure Database for PostgreSQL using Azure CLI](tutorial-design-database-using-azure-cli.md)
+[Design your first Azure Database for PostgreSQL using Azure CLI](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/postgresql/tutorial-design-database-using-azure-cli.md)
